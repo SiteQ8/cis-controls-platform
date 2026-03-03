@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIS Controls Education Platform - Interactive Learning Tool</title>
+    <style>
+        :root {
+            --color-bg-primary: #0f172a;
+            --color-bg-secondary: #1e293b;
+            --color-bg-tertiary: #334155;
+            --color-accent: #38bdf8;
+            --color-accent-hover: #0ea5e9;
+            --color-text-primary: #f1f5f9;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-danger: #ef4444;
+            --color-border: rgba(148, 163, 184, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--color-bg-secondary);
+            border-bottom: 1px solid var(--color-border);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--color-bg-primary);
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 2px;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 5px;
+            background: var(--color-bg-tertiary);
+            padding: 5px;
+            border-radius: 8px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 10px 40px 10px 15px;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg-tertiary);
+            color: var(--color-text-primary);
+            border-radius: 8px;
+            width: 300px;
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--color-accent);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--color-text-muted);
+            font-size: 14px;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: var(--color-bg-secondary);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 81px;
+            z-index: 99;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-content {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg-tertiary);
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .filter-btn.active {
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            border-color: var(--color-accent);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .control-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .control-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--color-accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .control-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+        }
+
+        .control-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .control-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .control-number {
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .control-info {
+            flex: 1;
+        }
+
+        .control-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 5px;
+        }
+
+        .control-subtitle {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        .control-description {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .control-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .tag-ig1 { background: rgba(16, 185, 129, 0.2); color: var(--color-success); }
+        .tag-ig2 { background: rgba(245, 158, 11, 0.2); color: var(--color-warning); }
+        .tag-ig3 { background: rgba(239, 68, 68, 0.2); color: var(--color-danger); }
+
+        .control-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .tools-count {
+            color: var(--color-text-muted);
+            font-size: 13px;
+        }
+
+        .tools-count strong {
+            color: var(--color-accent);
+        }
+
+        .view-btn {
+            padding: 8px 16px;
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-btn:hover {
+            background: var(--color-accent-hover);
+            transform: translateX(3px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .modal-content {
+            background: var(--color-bg-secondary);
+            border-radius: 16px;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            border: 1px solid var(--color-border);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 30px;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .modal-title-section {
+            flex: 1;
+        }
+
+        .modal-control-number {
+            color: var(--color-accent);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            color: var(--color-text-muted);
+            font-size: 15px;
+        }
+
+        .close-btn {
+            background: var(--color-bg-tertiary);
+            border: none;
+            color: var(--color-text-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .close-btn:hover {
+            background: var(--color-danger);
+            color: white;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--color-accent);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .safeguards-list {
+            background: var(--color-bg-tertiary);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .safeguard-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .safeguard-item:last-child {
+            border-bottom: none;
+        }
+
+        .safeguard-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 5px;
+        }
+
+        .safeguard-id {
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .safeguard-title {
+            color: var(--color-text-primary);
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .safeguard-description {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-left: 65px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .tool-card {
+            background: var(--color-bg-tertiary);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-3px);
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .tool-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .tool-type {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .type-opensource {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--color-success);
+        }
+
+        .tool-description {
+            color: var(--color-text-secondary);
+            font-size: 13px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tool-link:hover {
+            gap: 8px;
+        }
+
+        .implementation-tips {
+            background: var(--color-bg-tertiary);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tip-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .tip-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .tip-text {
+            flex: 1;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text-primary);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h2 {
+                font-size: 32px;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box input {
+                width: 200px;
+            }
+
+            .modal-content {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">C</div>
+                    <div class="logo-text">
+                        <h1 class="site-title">CIS Controls Platform</h1>
+                        <p class="site-subtitle">Interactive Security Education</p>
+                    </div>
+                </div>
+                <div class="header-controls">
+                    <div class="lang-switch">
+                        <button class="lang-btn active" data-lang="en">English</button>
+                        <button class="lang-btn" data-lang="ar">العربية</button>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" placeholder="Search controls..." id="searchInput">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Master CIS Critical Security Controls</h2>
+                <p class="hero-description">Comprehensive guide to implementing and understanding the 18 CIS Critical Security Controls with open-source tools and practical implementation strategies.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">18</span>
+                        <span class="stat-label">Security Controls</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">153</span>
+                        <span class="stat-label">Safeguards</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Open Source Tools</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section class="filter-bar">
+        <div class="container">
+            <div class="filter-content">
+                <span class="filter-label">Implementation Group:</span>
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ig1">IG1</button>
+                <button class="filter-btn" data-filter="ig2">IG2</button>
+                <button class="filter-btn" data-filter="ig3">IG3</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="controls-grid" id="controlsGrid"></div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="controlModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title-section">
+                    <div class="modal-control-number" id="modalControlNumber"></div>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <p class="modal-subtitle" id="modalSubtitle"></p>
+                </div>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">📋</span>
+                        <span class="section-title-text">Description</span>
+                    </h3>
+                    <p id="modalDescription" style="color: var(--color-text-secondary); line-height: 1.8;"></p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">🎯</span>
+                        <span class="section-title-text">Key Safeguards</span>
+                    </h3>
+                    <div class="safeguards-list" id="modalSafeguards"></div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">🛠️</span>
+                        <span class="section-title-text">Open Source Tools</span>
+                    </h3>
+                    <div class="tools-grid" id="modalTools"></div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">
+                        <span class="section-icon">💡</span>
+                        <span class="section-title-text">Implementation Tips</span>
+                    </h3>
+                    <div class="implementation-tips" id="modalTips"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-heading">About</h3>
+                    <p class="footer-text">This platform provides comprehensive educational resources for implementing CIS Critical Security Controls using open-source tools.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-heading">Resources</h3>
+                    <a href="https://www.cisecurity.org/controls" target="_blank">Official CIS Controls</a>
+                    <a href="https://www.cisecurity.org/controls/v8-1" target="_blank">CIS Controls v8.1</a>
+                    <a href="https://www.cisecurity.org/insights" target="_blank">CIS Insights Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-heading">Developer</h3>
+                    <p class="footer-text">Developed by Ali AlEnezi</p>
+                    <p class="footer-text">GitHub: <a href="https://github.com/SiteQ8" target="_blank">@SiteQ8</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CIS Controls Education Platform. For educational purposes. CIS Controls® is a registered trademark of the Center for Internet Security, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language System
+        let currentLang = 'en';
+
+        const translations = {
+            en: {
+                siteTitle: 'CIS Controls Platform',
+                siteSubtitle: 'Interactive Security Education',
+                heroTitle: 'Master CIS Critical Security Controls',
+                heroDescription: 'Comprehensive guide to implementing and understanding the 18 CIS Critical Security Controls with open-source tools and practical implementation strategies.',
+                searchPlaceholder: 'Search controls...',
+                filterLabel: 'Implementation Group:',
+                allFilter: 'All',
+                sectionTitles: {
+                    description: 'Description',
+                    safeguards: 'Key Safeguards',
+                    tools: 'Open Source Tools',
+                    tips: 'Implementation Tips'
+                },
+                statsLabels: {
+                    controls: 'Security Controls',
+                    safeguards: 'Safeguards',
+                    tools: 'Open Source Tools'
+                },
+                toolsCount: 'open-source tools',
+                viewDetails: 'View Details',
+                footerHeadings: {
+                    about: 'About',
+                    resources: 'Resources',
+                    developer: 'Developer'
+                },
+                footerText: {
+                    about: 'This platform provides comprehensive educational resources for implementing CIS Critical Security Controls using open-source tools.',
+                    developer: 'Developed by Ali AlEnezi',
+                    github: 'GitHub:'
+                }
+            },
+            ar: {
+                siteTitle: 'منصة ضوابط CIS',
+                siteSubtitle: 'تعليم أمني تفاعلي',
+                heroTitle: 'إتقان ضوابط الأمن السيبراني الحرجة',
+                heroDescription: 'دليل شامل لتطبيق وفهم ضوابط الأمن السيبراني الحرجة الـ 18 مع أدوات مفتوحة المصدر واستراتيجيات تنفيذ عملية.',
+                searchPlaceholder: 'بحث في الضوابط...',
+                filterLabel: 'مجموعة التنفيذ:',
+                allFilter: 'الكل',
+                sectionTitles: {
+                    description: 'الوصف',
+                    safeguards: 'الإجراءات الوقائية الرئيسية',
+                    tools: 'أدوات مفتوحة المصدر',
+                    tips: 'نصائح التنفيذ'
+                },
+                statsLabels: {
+                    controls: 'ضوابط أمنية',
+                    safeguards: 'إجراءات وقائية',
+                    tools: 'أدوات مفتوحة المصدر'
+                },
+                toolsCount: 'أدوات مفتوحة المصدر',
+                viewDetails: 'عرض التفاصيل',
+                footerHeadings: {
+                    about: 'حول',
+                    resources: 'الموارد',
+                    developer: 'المطور'
+                },
+                footerText: {
+                    about: 'توفر هذه المنصة موارد تعليمية شاملة لتطبيق ضوابط الأمن السيبراني الحرجة باستخدام أدوات مفتوحة المصدر.',
+                    developer: 'تطوير علي العنزي',
+                    github: 'GitHub:'
+                }
+            }
+        };
+
+        // CIS Controls Data
+        const cisControls = {
+            en: [
+                {
+                    id: 1,
+                    title: 'Inventory and Control of Enterprise Assets',
+                    subtitle: 'Hardware Asset Management',
+                    description: 'Actively manage all enterprise assets connected to the infrastructure physically, virtually, remotely, and those within cloud environments to know what they are and to continuously validate that only authorized devices are accessing the network.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '1.1', title: 'Establish and Maintain Detailed Enterprise Asset Inventory' },
+                        { id: '1.2', title: 'Address Unauthorized Assets' },
+                        { id: '1.3', title: 'Utilize an Active Discovery Tool' },
+                        { id: '1.4', title: 'Use Dynamic Host Configuration Protocol (DHCP) Logging' },
+                        { id: '1.5', title: 'Use a Passive Asset Discovery Tool' }
+                    ],
+                    tools: [
+                        { name: 'Open-AudIT', type: 'Open Source', description: 'Comprehensive asset inventory and discovery tool', url: 'https://github.com/Opmantek/open-audit' },
+                        { name: 'OCS Inventory NG', type: 'Open Source', description: 'Hardware and software inventory solution', url: 'https://ocsinventory-ng.org/' },
+                        { name: 'Snipe-IT', type: 'Open Source', description: 'IT asset management system', url: 'https://snipeitapp.com/' },
+                        { name: 'Ralph', type: 'Open Source', description: 'Asset management and DCIM system', url: 'https://github.com/allegro/ralph' }
+                    ],
+                    tips: [
+                        'Start with automated discovery tools to create baseline inventory',
+                        'Integrate DHCP logs with asset inventory for real-time tracking',
+                        'Schedule regular scans to detect unauthorized devices',
+                        'Tag assets with ownership and criticality information'
+                    ]
+                },
+                {
+                    id: 2,
+                    title: 'Inventory and Control of Software Assets',
+                    subtitle: 'Software Asset Management',
+                    description: 'Actively manage all software on the network so that only authorized software is installed and can execute, and that unauthorized and unmanaged software is found and prevented from installation or execution.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '2.1', title: 'Establish and Maintain a Software Inventory' },
+                        { id: '2.2', title: 'Ensure Authorized Software is Currently Supported' },
+                        { id: '2.3', title: 'Address Unauthorized Software' },
+                        { id: '2.4', title: 'Utilize Automated Software Inventory Tools' },
+                        { id: '2.5', title: 'Allowlist Authorized Software' }
+                    ],
+                    tools: [
+                        { name: 'OCS Inventory', type: 'Open Source', description: 'Software inventory and deployment', url: 'https://ocsinventory-ng.org/' },
+                        { name: 'Osquery', type: 'Open Source', description: 'SQL-powered endpoint visibility', url: 'https://osquery.io/' },
+                        { name: 'FOG Project', type: 'Open Source', description: 'Computer imaging and inventory', url: 'https://fogproject.org/' },
+                        { name: 'AppControl Manager', type: 'Open Source', description: 'Application whitelisting', url: 'https://github.com/microsoft/AaronLocker' }
+                    ],
+                    tips: [
+                        'Implement application whitelisting for critical systems',
+                        'Track software licenses to ensure compliance',
+                        'Automate software inventory updates',
+                        'Create approved software catalog for users'
+                    ]
+                },
+                {
+                    id: 3,
+                    title: 'Data Protection',
+                    subtitle: 'Sensitive Data Management',
+                    description: 'Develop processes and technical controls to identify, classify, securely handle, retain, and dispose of data.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '3.1', title: 'Establish and Maintain a Data Management Process' },
+                        { id: '3.2', title: 'Establish and Maintain a Data Inventory' },
+                        { id: '3.3', title: 'Configure Data Access Control Lists' },
+                        { id: '3.4', title: 'Enforce Data Retention' },
+                        { id: '3.5', title: 'Securely Dispose of Data' }
+                    ],
+                    tools: [
+                        { name: 'VeraCrypt', type: 'Open Source', description: 'Disk encryption software', url: 'https://www.veracrypt.fr/' },
+                        { name: 'Cryptomator', type: 'Open Source', description: 'Cloud storage encryption', url: 'https://cryptomator.org/' },
+                        { name: 'OpenDLP', type: 'Open Source', description: 'Data loss prevention', url: 'https://code.google.com/archive/p/opendlp/' },
+                        { name: 'BleachBit', type: 'Open Source', description: 'Secure data deletion', url: 'https://www.bleachbit.org/' }
+                    ],
+                    tips: [
+                        'Classify data based on sensitivity levels',
+                        'Implement encryption for data at rest and in transit',
+                        'Establish data retention policies',
+                        'Use secure deletion tools for sensitive data disposal'
+                    ]
+                },
+                {
+                    id: 4,
+                    title: 'Secure Configuration of Enterprise Assets and Software',
+                    subtitle: 'Configuration Management',
+                    description: 'Establish and maintain the secure configuration of enterprise assets and software.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '4.1', title: 'Establish and Maintain a Secure Configuration Process' },
+                        { id: '4.2', title: 'Establish and Maintain a Secure Configuration Process for Network Infrastructure' },
+                        { id: '4.3', title: 'Configure Automatic Session Locking on Enterprise Assets' },
+                        { id: '4.4', title: 'Implement and Manage a Firewall on Servers' },
+                        { id: '4.5', title: 'Implement and Manage a Firewall on End-User Devices' }
+                    ],
+                    tools: [
+                        { name: 'OpenSCAP', type: 'Open Source', description: 'Security compliance and vulnerability assessment', url: 'https://www.open-scap.org/' },
+                        { name: 'Lynis', type: 'Open Source', description: 'Security auditing and hardening tool', url: 'https://cisofy.com/lynis/' },
+                        { name: 'Ansible', type: 'Open Source', description: 'Configuration management automation', url: 'https://www.ansible.com/' },
+                        { name: 'Chef InSpec', type: 'Open Source', description: 'Compliance and security testing', url: 'https://www.chef.io/products/chef-inspec' }
+                    ],
+                    tips: [
+                        'Use CIS Benchmarks as baseline configurations',
+                        'Automate configuration deployment and validation',
+                        'Regularly audit system configurations',
+                        'Document all configuration standards'
+                    ]
+                },
+                {
+                    id: 5,
+                    title: 'Account Management',
+                    subtitle: 'Identity and Access Control',
+                    description: 'Use processes and tools to assign and manage authorization to credentials for user accounts, including administrator accounts, as well as service accounts.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '5.1', title: 'Establish and Maintain an Inventory of Accounts' },
+                        { id: '5.2', title: 'Use Unique Passwords' },
+                        { id: '5.3', title: 'Disable Dormant Accounts' },
+                        { id: '5.4', title: 'Restrict Administrator Privileges to Dedicated Accounts' },
+                        { id: '5.5', title: 'Establish and Maintain an Inventory of Service Accounts' }
+                    ],
+                    tools: [
+                        { name: 'FreeIPA', type: 'Open Source', description: 'Identity management system', url: 'https://www.freeipa.org/' },
+                        { name: 'Keycloak', type: 'Open Source', description: 'Identity and access management', url: 'https://www.keycloak.org/' },
+                        { name: 'OpenLDAP', type: 'Open Source', description: 'Directory services', url: 'https://www.openldap.org/' },
+                        { name: 'Bitwarden', type: 'Open Source', description: 'Password manager', url: 'https://bitwarden.com/' }
+                    ],
+                    tips: [
+                        'Implement multi-factor authentication for all accounts',
+                        'Use centralized identity management systems',
+                        'Regularly review and disable unused accounts',
+                        'Enforce strong password policies'
+                    ]
+                },
+                {
+                    id: 6,
+                    title: 'Access Control Management',
+                    subtitle: 'Privilege Management',
+                    description: 'Use processes and tools to create, assign, manage, and revoke access credentials and privileges for user, administrator, and service accounts for enterprise assets and software.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '6.1', title: 'Establish an Access Granting Process' },
+                        { id: '6.2', title: 'Establish an Access Revoking Process' },
+                        { id: '6.3', title: 'Require MFA for Externally-Exposed Applications' },
+                        { id: '6.4', title: 'Require MFA for Remote Network Access' },
+                        { id: '6.5', title: 'Require MFA for Administrative Access' }
+                    ],
+                    tools: [
+                        { name: 'privacyIDEA', type: 'Open Source', description: 'Multi-factor authentication server', url: 'https://www.privacyidea.org/' },
+                        { name: 'LinOTP', type: 'Open Source', description: 'Two-factor authentication system', url: 'https://www.linotp.org/' },
+                        { name: 'Apache Guacamole', type: 'Open Source', description: 'Remote desktop gateway', url: 'https://guacamole.apache.org/' },
+                        { name: 'sudo', type: 'Open Source', description: 'Privilege escalation control', url: 'https://www.sudo.ws/' }
+                    ],
+                    tips: [
+                        'Implement principle of least privilege',
+                        'Use role-based access control (RBAC)',
+                        'Require MFA for all privileged access',
+                        'Regularly audit access permissions'
+                    ]
+                },
+                {
+                    id: 7,
+                    title: 'Continuous Vulnerability Management',
+                    subtitle: 'Vulnerability Assessment',
+                    description: 'Develop a plan to continuously assess and track vulnerabilities on all enterprise assets within the enterprise\'s infrastructure.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '7.1', title: 'Establish and Maintain a Vulnerability Management Process' },
+                        { id: '7.2', title: 'Establish and Maintain a Remediation Process' },
+                        { id: '7.3', title: 'Perform Automated Operating System Patch Management' },
+                        { id: '7.4', title: 'Perform Automated Application Patch Management' },
+                        { id: '7.5', title: 'Perform Automated Vulnerability Scans' }
+                    ],
+                    tools: [
+                        { name: 'OpenVAS', type: 'Open Source', description: 'Comprehensive vulnerability scanner', url: 'https://www.openvas.org/' },
+                        { name: 'Nessus Essentials', type: 'Open Source', description: 'Vulnerability assessment (free tier)', url: 'https://www.tenable.com/products/nessus/nessus-essentials' },
+                        { name: 'Trivy', type: 'Open Source', description: 'Container vulnerability scanner', url: 'https://github.com/aquasecurity/trivy' },
+                        { name: 'Vuls', type: 'Open Source', description: 'Agentless vulnerability scanner', url: 'https://vuls.io/' }
+                    ],
+                    tips: [
+                        'Schedule automated vulnerability scans regularly',
+                        'Prioritize vulnerabilities by risk and exploitability',
+                        'Automate patch deployment where possible',
+                        'Track vulnerability remediation metrics'
+                    ]
+                },
+                {
+                    id: 8,
+                    title: 'Audit Log Management',
+                    subtitle: 'Security Monitoring and Logging',
+                    description: 'Collect, alert, review, and retain audit logs of events that could help detect, understand, or recover from an attack.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '8.1', title: 'Establish and Maintain an Audit Log Management Process' },
+                        { id: '8.2', title: 'Collect Audit Logs' },
+                        { id: '8.3', title: 'Ensure Adequate Audit Log Storage' },
+                        { id: '8.4', title: 'Standardize Time Synchronization' },
+                        { id: '8.5', title: 'Collect Detailed Audit Logs' }
+                    ],
+                    tools: [
+                        { name: 'ELK Stack', type: 'Open Source', description: 'Elasticsearch, Logstash, Kibana for log management', url: 'https://www.elastic.co/elastic-stack' },
+                        { name: 'Graylog', type: 'Open Source', description: 'Log management platform', url: 'https://www.graylog.org/' },
+                        { name: 'Wazuh', type: 'Open Source', description: 'Security monitoring and SIEM', url: 'https://wazuh.com/' },
+                        { name: 'OSSEC', type: 'Open Source', description: 'Host-based intrusion detection', url: 'https://www.ossec.net/' }
+                    ],
+                    tips: [
+                        'Centralize log collection from all systems',
+                        'Implement real-time alerting for critical events',
+                        'Ensure logs are tamper-proof and retained adequately',
+                        'Use time synchronization (NTP) across all systems'
+                    ]
+                },
+                {
+                    id: 9,
+                    title: 'Email and Web Browser Protections',
+                    subtitle: 'Email and Web Security',
+                    description: 'Improve protections and detections of threats from email and web vectors as these are opportunities for attackers to manipulate human behavior.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '9.1', title: 'Ensure Use of Only Fully Supported Browsers and Email Clients' },
+                        { id: '9.2', title: 'Use DNS Filtering Services' },
+                        { id: '9.3', title: 'Maintain and Enforce Network-Based URL Filters' },
+                        { id: '9.4', title: 'Restrict Unnecessary or Unauthorized Browser and Email Client Extensions' },
+                        { id: '9.5', title: 'Implement DMARC' }
+                    ],
+                    tools: [
+                        { name: 'Pi-hole', type: 'Open Source', description: 'Network-wide ad and malware blocking', url: 'https://pi-hole.net/' },
+                        { name: 'MailScanner', type: 'Open Source', description: 'Email security gateway', url: 'https://www.mailscanner.info/' },
+                        { name: 'ClamAV', type: 'Open Source', description: 'Antivirus engine for email', url: 'https://www.clamav.net/' },
+                        { name: 'Rspamd', type: 'Open Source', description: 'Spam filtering system', url: 'https://rspamd.com/' }
+                    ],
+                    tips: [
+                        'Implement DNS filtering to block malicious domains',
+                        'Configure email authentication (SPF, DKIM, DMARC)',
+                        'Use browser extensions whitelisting',
+                        'Deploy email sandboxing for attachments'
+                    ]
+                },
+                {
+                    id: 10,
+                    title: 'Malware Defenses',
+                    subtitle: 'Anti-Malware Protection',
+                    description: 'Prevent or control the installation, spread, and execution of malicious applications, code, or scripts on enterprise assets.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '10.1', title: 'Deploy and Maintain Anti-Malware Software' },
+                        { id: '10.2', title: 'Configure Automatic Anti-Malware Signature Updates' },
+                        { id: '10.3', title: 'Disable Autorun and Autoplay for Removable Media' },
+                        { id: '10.4', title: 'Configure Automatic Anti-Malware Scanning' },
+                        { id: '10.5', title: 'Enable Anti-Exploitation Features' }
+                    ],
+                    tools: [
+                        { name: 'ClamAV', type: 'Open Source', description: 'Open source antivirus engine', url: 'https://www.clamav.net/' },
+                        { name: 'Wazuh', type: 'Open Source', description: 'Endpoint security and malware detection', url: 'https://wazuh.com/' },
+                        { name: 'YARA', type: 'Open Source', description: 'Malware identification and classification', url: 'https://virustotal.github.io/yara/' },
+                        { name: 'OSQuery', type: 'Open Source', description: 'Endpoint visibility and threat hunting', url: 'https://osquery.io/' }
+                    ],
+                    tips: [
+                        'Deploy anti-malware on all endpoints and servers',
+                        'Enable automatic signature updates',
+                        'Configure real-time scanning and scheduled scans',
+                        'Disable autorun for removable media'
+                    ]
+                },
+                {
+                    id: 11,
+                    title: 'Data Recovery',
+                    subtitle: 'Backup and Recovery',
+                    description: 'Establish and maintain data recovery practices sufficient to restore in-scope enterprise assets to a pre-incident and trusted state.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '11.1', title: 'Establish and Maintain a Data Recovery Process' },
+                        { id: '11.2', title: 'Perform Automated Backups' },
+                        { id: '11.3', title: 'Protect Recovery Data' },
+                        { id: '11.4', title: 'Establish and Maintain an Isolated Instance of Recovery Data' },
+                        { id: '11.5', title: 'Test Data Recovery' }
+                    ],
+                    tools: [
+                        { name: 'Bacula', type: 'Open Source', description: 'Enterprise backup solution', url: 'https://www.bacula.org/' },
+                        { name: 'Restic', type: 'Open Source', description: 'Fast and secure backup program', url: 'https://restic.net/' },
+                        { name: 'BorgBackup', type: 'Open Source', description: 'Deduplicating backup program', url: 'https://www.borgbackup.org/' },
+                        { name: 'UrBackup', type: 'Open Source', description: 'Client/server backup system', url: 'https://www.urbackup.org/' }
+                    ],
+                    tips: [
+                        'Implement 3-2-1 backup strategy',
+                        'Encrypt backup data at rest and in transit',
+                        'Test restoration procedures regularly',
+                        'Store backups offline or air-gapped'
+                    ]
+                },
+                {
+                    id: 12,
+                    title: 'Network Infrastructure Management',
+                    subtitle: 'Network Device Security',
+                    description: 'Establish, implement, and actively manage the security configuration of network infrastructure using rigorous configuration management and change control processes.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '12.1', title: 'Ensure Network Infrastructure is Up-to-Date' },
+                        { id: '12.2', title: 'Establish and Maintain a Secure Network Architecture' },
+                        { id: '12.3', title: 'Securely Manage Network Infrastructure' },
+                        { id: '12.4', title: 'Establish and Maintain Architecture Diagram(s)' },
+                        { id: '12.5', title: 'Centralize Network Authentication, Authorization, and Auditing' }
+                    ],
+                    tools: [
+                        { name: 'pfSense', type: 'Open Source', description: 'Firewall and router platform', url: 'https://www.pfsense.org/' },
+                        { name: 'OpenWrt', type: 'Open Source', description: 'Linux-based router firmware', url: 'https://openwrt.org/' },
+                        { name: 'Nmap', type: 'Open Source', description: 'Network discovery and security auditing', url: 'https://nmap.org/' },
+                        { name: 'Netbox', type: 'Open Source', description: 'IP address management and DCIM', url: 'https://netbox.dev/' }
+                    ],
+                    tips: [
+                        'Document network architecture and maintain diagrams',
+                        'Segment networks based on security zones',
+                        'Use secure protocols for network device management',
+                        'Implement network access control (NAC)'
+                    ]
+                },
+                {
+                    id: 13,
+                    title: 'Network Monitoring and Defense',
+                    subtitle: 'Network Security Monitoring',
+                    description: 'Operate processes and tooling to establish and maintain comprehensive network monitoring and defense against security threats.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '13.1', title: 'Centralize Security Event Alerting' },
+                        { id: '13.2', title: 'Deploy a Host-Based Intrusion Detection Solution' },
+                        { id: '13.3', title: 'Deploy a Network Intrusion Detection Solution' },
+                        { id: '13.4', title: 'Perform Traffic Filtering Between Network Segments' },
+                        { id: '13.5', title: 'Manage Access Control for Remote Assets' }
+                    ],
+                    tools: [
+                        { name: 'Suricata', type: 'Open Source', description: 'Network IDS/IPS engine', url: 'https://suricata.io/' },
+                        { name: 'Zeek', type: 'Open Source', description: 'Network security monitoring', url: 'https://zeek.org/' },
+                        { name: 'Security Onion', type: 'Open Source', description: 'Network security monitoring platform', url: 'https://securityonionsolutions.com/' },
+                        { name: 'Snort', type: 'Open Source', description: 'Network intrusion detection', url: 'https://www.snort.org/' }
+                    ],
+                    tips: [
+                        'Deploy IDS/IPS at network boundaries',
+                        'Monitor east-west traffic between segments',
+                        'Integrate network monitoring with SIEM',
+                        'Establish baseline network behavior'
+                    ]
+                },
+                {
+                    id: 14,
+                    title: 'Security Awareness and Skills Training',
+                    subtitle: 'User Education',
+                    description: 'Establish and maintain a security awareness program to influence behavior among the workforce.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '14.1', title: 'Establish and Maintain a Security Awareness Program' },
+                        { id: '14.2', title: 'Train Workforce Members to Recognize Social Engineering Attacks' },
+                        { id: '14.3', title: 'Train Workforce Members on Authentication Best Practices' },
+                        { id: '14.4', title: 'Train Workforce on Data Handling Best Practices' },
+                        { id: '14.5', title: 'Train Workforce Members on Causes of Unintentional Data Exposure' }
+                    ],
+                    tools: [
+                        { name: 'Gophish', type: 'Open Source', description: 'Phishing simulation framework', url: 'https://getgophish.com/' },
+                        { name: 'PhishX', type: 'Open Source', description: 'Security awareness platform', url: 'https://phishx.io/' },
+                        { name: 'King Phisher', type: 'Open Source', description: 'Phishing campaign toolkit', url: 'https://github.com/securestate/king-phisher' },
+                        { name: 'OWASP Security Shepherd', type: 'Open Source', description: 'Security training platform', url: 'https://github.com/OWASP/SecurityShepherd' }
+                    ],
+                    tips: [
+                        'Conduct regular phishing simulation campaigns',
+                        'Provide role-based security training',
+                        'Track training completion and effectiveness',
+                        'Update training content based on emerging threats'
+                    ]
+                },
+                {
+                    id: 15,
+                    title: 'Service Provider Management',
+                    subtitle: 'Third-Party Risk',
+                    description: 'Develop a process to evaluate service providers who hold sensitive data, or are responsible for an enterprise\'s critical IT platforms or processes.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '15.1', title: 'Establish and Maintain an Inventory of Service Providers' },
+                        { id: '15.2', title: 'Establish and Maintain a Service Provider Management Policy' },
+                        { id: '15.3', title: 'Classify Service Providers' },
+                        { id: '15.4', title: 'Ensure Service Provider Contracts Include Security Requirements' },
+                        { id: '15.5', title: 'Assess Service Providers' }
+                    ],
+                    tools: [
+                        { name: 'OneTrust', type: 'Open Source', description: 'Vendor risk management (community edition)', url: 'https://www.onetrust.com/' },
+                        { name: 'VSAQ', type: 'Open Source', description: 'Vendor security assessment questionnaire', url: 'https://github.com/google/vsaq' },
+                        { name: 'Eramba', type: 'Open Source', description: 'GRC platform with vendor risk', url: 'https://www.eramba.org/' }
+                    ],
+                    tips: [
+                        'Maintain comprehensive vendor inventory',
+                        'Classify vendors by risk level',
+                        'Include security requirements in contracts',
+                        'Conduct regular vendor security assessments'
+                    ]
+                },
+                {
+                    id: 16,
+                    title: 'Application Software Security',
+                    subtitle: 'Secure Development',
+                    description: 'Manage the security life cycle of in-house developed, hosted, or acquired software to prevent, detect, and remediate security weaknesses.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '16.1', title: 'Establish and Maintain a Secure Application Development Process' },
+                        { id: '16.2', title: 'Establish and Maintain a Process to Accept and Address Software Vulnerabilities' },
+                        { id: '16.3', title: 'Perform Root Cause Analysis on Security Vulnerabilities' },
+                        { id: '16.4', title: 'Establish and Manage an Inventory of Third-Party Software Components' },
+                        { id: '16.5', title: 'Use Up-to-Date and Trusted Third-Party Software Components' }
+                    ],
+                    tools: [
+                        { name: 'SonarQube', type: 'Open Source', description: 'Code quality and security analysis', url: 'https://www.sonarqube.org/' },
+                        { name: 'OWASP ZAP', type: 'Open Source', description: 'Web application security scanner', url: 'https://www.zaproxy.org/' },
+                        { name: 'Dependency-Check', type: 'Open Source', description: 'Software composition analysis', url: 'https://owasp.org/www-project-dependency-check/' },
+                        { name: 'Bandit', type: 'Open Source', description: 'Python security linter', url: 'https://github.com/PyCQA/bandit' }
+                    ],
+                    tips: [
+                        'Integrate security testing in CI/CD pipeline',
+                        'Perform static and dynamic code analysis',
+                        'Track third-party component vulnerabilities',
+                        'Implement secure coding standards'
+                    ]
+                },
+                {
+                    id: 17,
+                    title: 'Incident Response Management',
+                    subtitle: 'Security Incident Response',
+                    description: 'Establish a program to develop and maintain an incident response capability to prepare, detect, and quickly respond to an attack.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '17.1', title: 'Designate Personnel to Manage Incident Handling' },
+                        { id: '17.2', title: 'Establish and Maintain Contact Information for Reporting Security Incidents' },
+                        { id: '17.3', title: 'Establish and Maintain an Enterprise Process for Reporting Incidents' },
+                        { id: '17.4', title: 'Establish and Maintain an Incident Response Process' },
+                        { id: '17.5', title: 'Assign Key Roles and Responsibilities' }
+                    ],
+                    tools: [
+                        { name: 'TheHive', type: 'Open Source', description: 'Security incident response platform', url: 'https://thehive-project.org/' },
+                        { name: 'MISP', type: 'Open Source', description: 'Threat intelligence sharing platform', url: 'https://www.misp-project.org/' },
+                        { name: 'Cortex', type: 'Open Source', description: 'Observable analysis engine', url: 'https://github.com/TheHive-Project/Cortex' },
+                        { name: 'FIR', type: 'Open Source', description: 'Fast incident response', url: 'https://github.com/certsocietegenerale/FIR' }
+                    ],
+                    tips: [
+                        'Develop and document incident response plan',
+                        'Establish incident response team roles',
+                        'Conduct tabletop exercises regularly',
+                        'Integrate threat intelligence into IR process'
+                    ]
+                },
+                {
+                    id: 18,
+                    title: 'Penetration Testing',
+                    subtitle: 'Security Testing',
+                    description: 'Test the effectiveness and resiliency of enterprise assets through identifying and exploiting weaknesses in controls and detecting them through network and security monitoring.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '18.1', title: 'Establish and Maintain a Penetration Testing Program' },
+                        { id: '18.2', title: 'Perform Periodic External Penetration Tests' },
+                        { id: '18.3', title: 'Remediate Penetration Test Findings' },
+                        { id: '18.4', title: 'Validate Security Measures' },
+                        { id: '18.5', title: 'Perform Periodic Internal Penetration Tests' }
+                    ],
+                    tools: [
+                        { name: 'Metasploit', type: 'Open Source', description: 'Penetration testing framework', url: 'https://www.metasploit.com/' },
+                        { name: 'Kali Linux', type: 'Open Source', description: 'Penetration testing distribution', url: 'https://www.kali.org/' },
+                        { name: 'Burp Suite Community', type: 'Open Source', description: 'Web security testing', url: 'https://portswigger.net/burp/communitydownload' },
+                        { name: 'OpenVAS', type: 'Open Source', description: 'Vulnerability assessment', url: 'https://www.openvas.org/' }
+                    ],
+                    tips: [
+                        'Schedule regular penetration tests',
+                        'Test both external and internal attack surfaces',
+                        'Remediate findings based on risk priority',
+                        'Validate security controls effectiveness'
+                    ]
+                }
+            ],
+            ar: [
+                {
+                    id: 1,
+                    title: 'جرد ومراقبة أصول المؤسسة',
+                    subtitle: 'إدارة أصول الأجهزة',
+                    description: 'إدارة جميع أصول المؤسسة المتصلة بالبنية التحتية بشكل فعال، سواء كانت مادية أو افتراضية أو بعيدة أو في البيئات السحابية، لمعرفة ماهيتها والتحقق المستمر من أن الأجهزة المصرح بها فقط هي التي تصل إلى الشبكة.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '1.1', title: 'إنشاء وصيانة جرد تفصيلي لأصول المؤسسة' },
+                        { id: '1.2', title: 'معالجة الأصول غير المصرح بها' },
+                        { id: '1.3', title: 'استخدام أداة اكتشاف نشطة' },
+                        { id: '1.4', title: 'استخدام تسجيل بروتوكول تكوين المضيف الديناميكي (DHCP)' },
+                        { id: '1.5', title: 'استخدام أداة اكتشاف سلبية للأصول' }
+                    ],
+                    tools: [
+                        { name: 'Open-AudIT', type: 'مفتوح المصدر', description: 'أداة شاملة لجرد واكتشاف الأصول', url: 'https://github.com/Opmantek/open-audit' },
+                        { name: 'OCS Inventory NG', type: 'مفتوح المصدر', description: 'حل جرد الأجهزة والبرامج', url: 'https://ocsinventory-ng.org/' },
+                        { name: 'Snipe-IT', type: 'مفتوح المصدر', description: 'نظام إدارة أصول تقنية المعلومات', url: 'https://snipeitapp.com/' },
+                        { name: 'Ralph', type: 'مفتوح المصدر', description: 'نظام إدارة الأصول ومركز البيانات', url: 'https://github.com/allegro/ralph' }
+                    ],
+                    tips: [
+                        'ابدأ بأدوات الاكتشاف التلقائي لإنشاء جرد أساسي',
+                        'دمج سجلات DHCP مع جرد الأصول للتتبع في الوقت الفعلي',
+                        'جدولة عمليات الفحص المنتظمة لاكتشاف الأجهزة غير المصرح بها',
+                        'وضع علامات على الأصول بمعلومات الملكية والأهمية الحرجة'
+                    ]
+                },
+                {
+                    id: 2,
+                    title: 'جرد ومراقبة أصول البرمجيات',
+                    subtitle: 'إدارة أصول البرمجيات',
+                    description: 'إدارة جميع البرامج على الشبكة بشكل فعال بحيث يتم تثبيت وتنفيذ البرامج المصرح بها فقط، واكتشاف ومنع تثبيت أو تنفيذ البرامج غير المصرح بها وغير المُدارة.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '2.1', title: 'إنشاء وصيانة جرد البرمجيات' },
+                        { id: '2.2', title: 'التأكد من أن البرامج المصرح بها مدعومة حالياً' },
+                        { id: '2.3', title: 'معالجة البرامج غير المصرح بها' },
+                        { id: '2.4', title: 'استخدام أدوات جرد البرامج التلقائية' },
+                        { id: '2.5', title: 'وضع قائمة بيضاء للبرامج المصرح بها' }
+                    ],
+                    tools: [
+                        { name: 'OCS Inventory', type: 'مفتوح المصدر', description: 'جرد ونشر البرامج', url: 'https://ocsinventory-ng.org/' },
+                        { name: 'Osquery', type: 'مفتوح المصدر', description: 'رؤية نقاط النهاية بقوة SQL', url: 'https://osquery.io/' },
+                        { name: 'FOG Project', type: 'مفتوح المصدر', description: 'نسخ احتياطي وجرد الحواسيب', url: 'https://fogproject.org/' },
+                        { name: 'AppControl Manager', type: 'مفتوح المصدر', description: 'قائمة بيضاء للتطبيقات', url: 'https://github.com/microsoft/AaronLocker' }
+                    ],
+                    tips: [
+                        'تنفيذ قائمة بيضاء للتطبيقات على الأنظمة الحرجة',
+                        'تتبع تراخيص البرامج لضمان الامتثال',
+                        'أتمتة تحديثات جرد البرامج',
+                        'إنشاء كتالوج برامج معتمدة للمستخدمين'
+                    ]
+                },
+                {
+                    id: 3,
+                    title: 'حماية البيانات',
+                    subtitle: 'إدارة البيانات الحساسة',
+                    description: 'تطوير العمليات والضوابط التقنية لتحديد البيانات وتصنيفها ومعالجتها بشكل آمن والاحتفاظ بها والتخلص منها.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '3.1', title: 'إنشاء وصيانة عملية إدارة البيانات' },
+                        { id: '3.2', title: 'إنشاء وصيانة جرد البيانات' },
+                        { id: '3.3', title: 'تكوين قوائم التحكم في الوصول إلى البيانات' },
+                        { id: '3.4', title: 'فرض الاحتفاظ بالبيانات' },
+                        { id: '3.5', title: 'التخلص الآمن من البيانات' }
+                    ],
+                    tools: [
+                        { name: 'VeraCrypt', type: 'مفتوح المصدر', description: 'برنامج تشفير القرص', url: 'https://www.veracrypt.fr/' },
+                        { name: 'Cryptomator', type: 'مفتوح المصدر', description: 'تشفير التخزين السحابي', url: 'https://cryptomator.org/' },
+                        { name: 'OpenDLP', type: 'مفتوح المصدر', description: 'منع فقدان البيانات', url: 'https://code.google.com/archive/p/opendlp/' },
+                        { name: 'BleachBit', type: 'مفتوح المصدر', description: 'حذف آمن للبيانات', url: 'https://www.bleachbit.org/' }
+                    ],
+                    tips: [
+                        'تصنيف البيانات بناءً على مستويات الحساسية',
+                        'تنفيذ التشفير للبيانات الثابتة وأثناء النقل',
+                        'وضع سياسات الاحتفاظ بالبيانات',
+                        'استخدام أدوات الحذف الآمن للتخلص من البيانات الحساسة'
+                    ]
+                },
+                {
+                    id: 4,
+                    title: 'التكوين الآمن لأصول وبرامج المؤسسة',
+                    subtitle: 'إدارة التكوين',
+                    description: 'إنشاء وصيانة التكوين الآمن لأصول وبرامج المؤسسة.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '4.1', title: 'إنشاء وصيانة عملية تكوين آمنة' },
+                        { id: '4.2', title: 'إنشاء وصيانة عملية تكوين آمنة للبنية التحتية للشبكة' },
+                        { id: '4.3', title: 'تكوين قفل الجلسة التلقائي على أصول المؤسسة' },
+                        { id: '4.4', title: 'تنفيذ وإدارة جدار حماية على الخوادم' },
+                        { id: '4.5', title: 'تنفيذ وإدارة جدار حماية على أجهزة المستخدم النهائي' }
+                    ],
+                    tools: [
+                        { name: 'OpenSCAP', type: 'مفتوح المصدر', description: 'الامتثال الأمني وتقييم الثغرات', url: 'https://www.open-scap.org/' },
+                        { name: 'Lynis', type: 'مفتوح المصدر', description: 'أداة التدقيق الأمني والتقوية', url: 'https://cisofy.com/lynis/' },
+                        { name: 'Ansible', type: 'مفتوح المصدر', description: 'أتمتة إدارة التكوين', url: 'https://www.ansible.com/' },
+                        { name: 'Chef InSpec', type: 'مفتوح المصدر', description: 'اختبار الامتثال والأمن', url: 'https://www.chef.io/products/chef-inspec' }
+                    ],
+                    tips: [
+                        'استخدام معايير CIS كتكوينات أساسية',
+                        'أتمتة نشر التكوين والتحقق منه',
+                        'مراجعة تكوينات النظام بانتظام',
+                        'توثيق جميع معايير التكوين'
+                    ]
+                },
+                {
+                    id: 5,
+                    title: 'إدارة الحسابات',
+                    subtitle: 'إدارة الهوية والوصول',
+                    description: 'استخدام العمليات والأدوات لتعيين وإدارة التفويض لبيانات الاعتماد لحسابات المستخدمين، بما في ذلك حسابات المسؤولين وحسابات الخدمة.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '5.1', title: 'إنشاء وصيانة جرد الحسابات' },
+                        { id: '5.2', title: 'استخدام كلمات مرور فريدة' },
+                        { id: '5.3', title: 'تعطيل الحسابات الخاملة' },
+                        { id: '5.4', title: 'تقييد امتيازات المسؤول للحسابات المخصصة' },
+                        { id: '5.5', title: 'إنشاء وصيانة جرد حسابات الخدمة' }
+                    ],
+                    tools: [
+                        { name: 'FreeIPA', type: 'مفتوح المصدر', description: 'نظام إدارة الهوية', url: 'https://www.freeipa.org/' },
+                        { name: 'Keycloak', type: 'مفتوح المصدر', description: 'إدارة الهوية والوصول', url: 'https://www.keycloak.org/' },
+                        { name: 'OpenLDAP', type: 'مفتوح المصدر', description: 'خدمات الدليل', url: 'https://www.openldap.org/' },
+                        { name: 'Bitwarden', type: 'مفتوح المصدر', description: 'مدير كلمات المرور', url: 'https://bitwarden.com/' }
+                    ],
+                    tips: [
+                        'تنفيذ المصادقة متعددة العوامل لجميع الحسابات',
+                        'استخدام أنظمة إدارة الهوية المركزية',
+                        'مراجعة وتعطيل الحسابات غير المستخدمة بانتظام',
+                        'فرض سياسات كلمات مرور قوية'
+                    ]
+                },
+                {
+                    id: 6,
+                    title: 'إدارة التحكم في الوصول',
+                    subtitle: 'إدارة الامتيازات',
+                    description: 'استخدام العمليات والأدوات لإنشاء وتعيين وإدارة وإلغاء بيانات اعتماد الوصول والامتيازات لحسابات المستخدمين والمسؤولين والخدمات لأصول وبرامج المؤسسة.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '6.1', title: 'إنشاء عملية منح الوصول' },
+                        { id: '6.2', title: 'إنشاء عملية إلغاء الوصول' },
+                        { id: '6.3', title: 'طلب MFA للتطبيقات المعرضة خارجياً' },
+                        { id: '6.4', title: 'طلب MFA للوصول عن بعد للشبكة' },
+                        { id: '6.5', title: 'طلب MFA للوصول الإداري' }
+                    ],
+                    tools: [
+                        { name: 'privacyIDEA', type: 'مفتوح المصدر', description: 'خادم المصادقة متعددة العوامل', url: 'https://www.privacyidea.org/' },
+                        { name: 'LinOTP', type: 'مفتوح المصدر', description: 'نظام المصادقة ثنائية العامل', url: 'https://www.linotp.org/' },
+                        { name: 'Apache Guacamole', type: 'مفتوح المصدر', description: 'بوابة سطح المكتب البعيد', url: 'https://guacamole.apache.org/' },
+                        { name: 'sudo', type: 'مفتوح المصدر', description: 'التحكم في تصعيد الامتيازات', url: 'https://www.sudo.ws/' }
+                    ],
+                    tips: [
+                        'تنفيذ مبدأ أقل امتياز',
+                        'استخدام التحكم في الوصول القائم على الأدوار (RBAC)',
+                        'طلب MFA لجميع الوصول المميز',
+                        'مراجعة أذونات الوصول بانتظام'
+                    ]
+                },
+                {
+                    id: 7,
+                    title: 'الإدارة المستمرة للثغرات الأمنية',
+                    subtitle: 'تقييم الثغرات',
+                    description: 'تطوير خطة لتقييم وتتبع الثغرات الأمنية بشكل مستمر على جميع أصول المؤسسة ضمن البنية التحتية للمؤسسة.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '7.1', title: 'إنشاء وصيانة عملية إدارة الثغرات' },
+                        { id: '7.2', title: 'إنشاء وصيانة عملية المعالجة' },
+                        { id: '7.3', title: 'إجراء إدارة تصحيحات نظام التشغيل التلقائية' },
+                        { id: '7.4', title: 'إجراء إدارة تصحيحات التطبيقات التلقائية' },
+                        { id: '7.5', title: 'إجراء عمليات فحص الثغرات التلقائية' }
+                    ],
+                    tools: [
+                        { name: 'OpenVAS', type: 'مفتوح المصدر', description: 'ماسح ثغرات شامل', url: 'https://www.openvas.org/' },
+                        { name: 'Nessus Essentials', type: 'مفتوح المصدر', description: 'تقييم الثغرات (مستوى مجاني)', url: 'https://www.tenable.com/products/nessus/nessus-essentials' },
+                        { name: 'Trivy', type: 'مفتوح المصدر', description: 'ماسح ثغرات الحاويات', url: 'https://github.com/aquasecurity/trivy' },
+                        { name: 'Vuls', type: 'مفتوح المصدر', description: 'ماسح ثغرات بدون وكيل', url: 'https://vuls.io/' }
+                    ],
+                    tips: [
+                        'جدولة عمليات فحص الثغرات التلقائية بانتظام',
+                        'تحديد أولويات الثغرات حسب المخاطر وقابلية الاستغلال',
+                        'أتمتة نشر التصحيحات حيثما أمكن',
+                        'تتبع مقاييس معالجة الثغرات'
+                    ]
+                },
+                {
+                    id: 8,
+                    title: 'إدارة سجلات التدقيق',
+                    subtitle: 'المراقبة الأمنية والتسجيل',
+                    description: 'جمع وتنبيه ومراجعة والاحتفاظ بسجلات التدقيق للأحداث التي يمكن أن تساعد في اكتشاف أو فهم أو التعافي من هجوم.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '8.1', title: 'إنشاء وصيانة عملية إدارة سجلات التدقيق' },
+                        { id: '8.2', title: 'جمع سجلات التدقيق' },
+                        { id: '8.3', title: 'ضمان تخزين كافٍ لسجلات التدقيق' },
+                        { id: '8.4', title: 'توحيد مزامنة الوقت' },
+                        { id: '8.5', title: 'جمع سجلات تدقيق مفصلة' }
+                    ],
+                    tools: [
+                        { name: 'ELK Stack', type: 'مفتوح المصدر', description: 'Elasticsearch و Logstash و Kibana لإدارة السجلات', url: 'https://www.elastic.co/elastic-stack' },
+                        { name: 'Graylog', type: 'مفتوح المصدر', description: 'منصة إدارة السجلات', url: 'https://www.graylog.org/' },
+                        { name: 'Wazuh', type: 'مفتوح المصدر', description: 'المراقبة الأمنية و SIEM', url: 'https://wazuh.com/' },
+                        { name: 'OSSEC', type: 'مفتوح المصدر', description: 'كشف التسلل على مستوى المضيف', url: 'https://www.ossec.net/' }
+                    ],
+                    tips: [
+                        'مركزية جمع السجلات من جميع الأنظمة',
+                        'تنفيذ التنبيهات في الوقت الفعلي للأحداث الحرجة',
+                        'التأكد من أن السجلات مقاومة للعبث ومحفوظة بشكل كافٍ',
+                        'استخدام مزامنة الوقت (NTP) عبر جميع الأنظمة'
+                    ]
+                },
+                {
+                    id: 9,
+                    title: 'حماية البريد الإلكتروني ومتصفح الويب',
+                    subtitle: 'أمن البريد الإلكتروني والويب',
+                    description: 'تحسين الحماية والكشف عن التهديدات من ناقلات البريد الإلكتروني والويب حيث أنها فرص للمهاجمين للتلاعب بالسلوك البشري.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '9.1', title: 'التأكد من استخدام المتصفحات وعملاء البريد المدعومة بالكامل فقط' },
+                        { id: '9.2', title: 'استخدام خدمات تصفية DNS' },
+                        { id: '9.3', title: 'الحفاظ على وفرض فلاتر URL على مستوى الشبكة' },
+                        { id: '9.4', title: 'تقييد ملحقات المتصفح وعميل البريد غير الضرورية أو غير المصرح بها' },
+                        { id: '9.5', title: 'تنفيذ DMARC' }
+                    ],
+                    tools: [
+                        { name: 'Pi-hole', type: 'مفتوح المصدر', description: 'حظر الإعلانات والبرامج الضارة على مستوى الشبكة', url: 'https://pi-hole.net/' },
+                        { name: 'MailScanner', type: 'مفتوح المصدر', description: 'بوابة أمن البريد الإلكتروني', url: 'https://www.mailscanner.info/' },
+                        { name: 'ClamAV', type: 'مفتوح المصدر', description: 'محرك مكافحة الفيروسات للبريد الإلكتروني', url: 'https://www.clamav.net/' },
+                        { name: 'Rspamd', type: 'مفتوح المصدر', description: 'نظام تصفية البريد المزعج', url: 'https://rspamd.com/' }
+                    ],
+                    tips: [
+                        'تنفيذ تصفية DNS لحظر النطاقات الضارة',
+                        'تكوين مصادقة البريد الإلكتروني (SPF و DKIM و DMARC)',
+                        'استخدام قائمة بيضاء لملحقات المتصفح',
+                        'نشر صندوق رمل للبريد الإلكتروني للمرفقات'
+                    ]
+                },
+                {
+                    id: 10,
+                    title: 'دفاعات البرامج الضارة',
+                    subtitle: 'الحماية من البرامج الضارة',
+                    description: 'منع أو التحكم في تثبيت ونشر وتنفيذ التطبيقات أو الشفرات أو البرامج النصية الضارة على أصول المؤسسة.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '10.1', title: 'نشر وصيانة برامج مكافحة البرامج الضارة' },
+                        { id: '10.2', title: 'تكوين التحديثات التلقائية لتوقيعات مكافحة البرامج الضارة' },
+                        { id: '10.3', title: 'تعطيل التشغيل التلقائي للوسائط القابلة للإزالة' },
+                        { id: '10.4', title: 'تكوين الفحص التلقائي لمكافحة البرامج الضارة' },
+                        { id: '10.5', title: 'تمكين ميزات مكافحة الاستغلال' }
+                    ],
+                    tools: [
+                        { name: 'ClamAV', type: 'مفتوح المصدر', description: 'محرك مكافحة فيروسات مفتوح المصدر', url: 'https://www.clamav.net/' },
+                        { name: 'Wazuh', type: 'مفتوح المصدر', description: 'أمن نقاط النهاية واكتشاف البرامج الضارة', url: 'https://wazuh.com/' },
+                        { name: 'YARA', type: 'مفتوح المصدر', description: 'تحديد وتصنيف البرامج الضارة', url: 'https://virustotal.github.io/yara/' },
+                        { name: 'OSQuery', type: 'مفتوح المصدر', description: 'رؤية نقاط النهاية والصيد عن التهديدات', url: 'https://osquery.io/' }
+                    ],
+                    tips: [
+                        'نشر مكافحة البرامج الضارة على جميع نقاط النهاية والخوادم',
+                        'تمكين التحديثات التلقائية للتوقيعات',
+                        'تكوين الفحص في الوقت الفعلي والفحص المجدول',
+                        'تعطيل التشغيل التلقائي للوسائط القابلة للإزالة'
+                    ]
+                },
+                {
+                    id: 11,
+                    title: 'استعادة البيانات',
+                    subtitle: 'النسخ الاحتياطي والاستعادة',
+                    description: 'إنشاء وصيانة ممارسات استعادة البيانات الكافية لاستعادة أصول المؤسسة المشمولة إلى حالة ما قبل الحادث وموثوقة.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '11.1', title: 'إنشاء وصيانة عملية استعادة البيانات' },
+                        { id: '11.2', title: 'إجراء نسخ احتياطية تلقائية' },
+                        { id: '11.3', title: 'حماية بيانات الاستعادة' },
+                        { id: '11.4', title: 'إنشاء وصيانة نسخة معزولة من بيانات الاستعادة' },
+                        { id: '11.5', title: 'اختبار استعادة البيانات' }
+                    ],
+                    tools: [
+                        { name: 'Bacula', type: 'مفتوح المصدر', description: 'حل النسخ الاحتياطي للمؤسسات', url: 'https://www.bacula.org/' },
+                        { name: 'Restic', type: 'مفتوح المصدر', description: 'برنامج نسخ احتياطي سريع وآمن', url: 'https://restic.net/' },
+                        { name: 'BorgBackup', type: 'مفتوح المصدر', description: 'برنامج نسخ احتياطي بإلغاء التكرار', url: 'https://www.borgbackup.org/' },
+                        { name: 'UrBackup', type: 'مفتوح المصدر', description: 'نظام نسخ احتياطي عميل/خادم', url: 'https://www.urbackup.org/' }
+                    ],
+                    tips: [
+                        'تنفيذ استراتيجية النسخ الاحتياطي 3-2-1',
+                        'تشفير البيانات الاحتياطية الثابتة وأثناء النقل',
+                        'اختبار إجراءات الاستعادة بانتظام',
+                        'تخزين النسخ الاحتياطية دون اتصال أو معزولة'
+                    ]
+                },
+                {
+                    id: 12,
+                    title: 'إدارة البنية التحتية للشبكة',
+                    subtitle: 'أمن أجهزة الشبكة',
+                    description: 'إنشاء وتنفيذ وإدارة التكوين الأمني للبنية التحتية للشبكة بشكل نشط باستخدام عمليات صارمة لإدارة التكوين والتحكم في التغيير.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '12.1', title: 'التأكد من تحديث البنية التحتية للشبكة' },
+                        { id: '12.2', title: 'إنشاء وصيانة بنية شبكة آمنة' },
+                        { id: '12.3', title: 'إدارة البنية التحتية للشبكة بشكل آمن' },
+                        { id: '12.4', title: 'إنشاء وصيانة مخططات البنية' },
+                        { id: '12.5', title: 'مركزية مصادقة الشبكة والتفويض والتدقيق' }
+                    ],
+                    tools: [
+                        { name: 'pfSense', type: 'مفتوح المصدر', description: 'منصة جدار حماية وموجه', url: 'https://www.pfsense.org/' },
+                        { name: 'OpenWrt', type: 'مفتوح المصدر', description: 'برنامج ثابت للموجه يعتمد على Linux', url: 'https://openwrt.org/' },
+                        { name: 'Nmap', type: 'مفتوح المصدر', description: 'اكتشاف الشبكة والتدقيق الأمني', url: 'https://nmap.org/' },
+                        { name: 'Netbox', type: 'مفتوح المصدر', description: 'إدارة عناوين IP و DCIM', url: 'https://netbox.dev/' }
+                    ],
+                    tips: [
+                        'توثيق بنية الشبكة وصيانة المخططات',
+                        'تقسيم الشبكات بناءً على مناطق الأمان',
+                        'استخدام بروتوكولات آمنة لإدارة أجهزة الشبكة',
+                        'تنفيذ التحكم في الوصول إلى الشبكة (NAC)'
+                    ]
+                },
+                {
+                    id: 13,
+                    title: 'مراقبة ودفاع الشبكة',
+                    subtitle: 'مراقبة أمن الشبكة',
+                    description: 'تشغيل العمليات والأدوات لإنشاء وصيانة مراقبة شبكة شاملة ودفاع ضد التهديدات الأمنية.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '13.1', title: 'مركزية تنبيهات الأحداث الأمنية' },
+                        { id: '13.2', title: 'نشر حل كشف التسلل على مستوى المضيف' },
+                        { id: '13.3', title: 'نشر حل كشف التسلل على مستوى الشبكة' },
+                        { id: '13.4', title: 'إجراء تصفية حركة المرور بين قطاعات الشبكة' },
+                        { id: '13.5', title: 'إدارة التحكم في الوصول للأصول البعيدة' }
+                    ],
+                    tools: [
+                        { name: 'Suricata', type: 'مفتوح المصدر', description: 'محرك IDS/IPS للشبكة', url: 'https://suricata.io/' },
+                        { name: 'Zeek', type: 'مفتوح المصدر', description: 'مراقبة أمن الشبكة', url: 'https://zeek.org/' },
+                        { name: 'Security Onion', type: 'مفتوح المصدر', description: 'منصة مراقبة أمن الشبكة', url: 'https://securityonionsolutions.com/' },
+                        { name: 'Snort', type: 'مفتوح المصدر', description: 'كشف التسلل على الشبكة', url: 'https://www.snort.org/' }
+                    ],
+                    tips: [
+                        'نشر IDS/IPS على حدود الشبكة',
+                        'مراقبة حركة المرور بين القطاعات',
+                        'دمج مراقبة الشبكة مع SIEM',
+                        'إنشاء خط أساس لسلوك الشبكة'
+                    ]
+                },
+                {
+                    id: 14,
+                    title: 'الوعي الأمني والتدريب على المهارات',
+                    subtitle: 'تثقيف المستخدم',
+                    description: 'إنشاء وصيانة برنامج توعية أمنية للتأثير على السلوك بين القوى العاملة.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '14.1', title: 'إنشاء وصيانة برنامج توعية أمنية' },
+                        { id: '14.2', title: 'تدريب أعضاء القوى العاملة على التعرف على هجمات الهندسة الاجتماعية' },
+                        { id: '14.3', title: 'تدريب أعضاء القوى العاملة على أفضل ممارسات المصادقة' },
+                        { id: '14.4', title: 'تدريب القوى العاملة على أفضل ممارسات معالجة البيانات' },
+                        { id: '14.5', title: 'تدريب أعضاء القوى العاملة على أسباب تعرض البيانات غير المقصود' }
+                    ],
+                    tools: [
+                        { name: 'Gophish', type: 'مفتوح المصدر', description: 'إطار محاكاة التصيد الاحتيالي', url: 'https://getgophish.com/' },
+                        { name: 'PhishX', type: 'مفتوح المصدر', description: 'منصة التوعية الأمنية', url: 'https://phishx.io/' },
+                        { name: 'King Phisher', type: 'مفتوح المصدر', description: 'مجموعة أدوات حملة التصيد الاحتيالي', url: 'https://github.com/securestate/king-phisher' },
+                        { name: 'OWASP Security Shepherd', type: 'مفتوح المصدر', description: 'منصة التدريب الأمني', url: 'https://github.com/OWASP/SecurityShepherd' }
+                    ],
+                    tips: [
+                        'إجراء حملات محاكاة التصيد الاحتيالي المنتظمة',
+                        'توفير تدريب أمني قائم على الأدوار',
+                        'تتبع إتمام التدريب وفعاليته',
+                        'تحديث محتوى التدريب بناءً على التهديدات الناشئة'
+                    ]
+                },
+                {
+                    id: 15,
+                    title: 'إدارة مزودي الخدمات',
+                    subtitle: 'مخاطر الطرف الثالث',
+                    description: 'تطوير عملية لتقييم مزودي الخدمات الذين يحتفظون ببيانات حساسة أو مسؤولين عن منصات أو عمليات تقنية المعلومات الحرجة للمؤسسة.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '15.1', title: 'إنشاء وصيانة جرد مزودي الخدمات' },
+                        { id: '15.2', title: 'إنشاء وصيانة سياسة إدارة مزودي الخدمات' },
+                        { id: '15.3', title: 'تصنيف مزودي الخدمات' },
+                        { id: '15.4', title: 'التأكد من أن عقود مزودي الخدمات تتضمن متطلبات أمنية' },
+                        { id: '15.5', title: 'تقييم مزودي الخدمات' }
+                    ],
+                    tools: [
+                        { name: 'OneTrust', type: 'مفتوح المصدر', description: 'إدارة مخاطر الموردين (إصدار المجتمع)', url: 'https://www.onetrust.com/' },
+                        { name: 'VSAQ', type: 'مفتوح المصدر', description: 'استبيان تقييم أمن الموردين', url: 'https://github.com/google/vsaq' },
+                        { name: 'Eramba', type: 'مفتوح المصدر', description: 'منصة GRC مع مخاطر الموردين', url: 'https://www.eramba.org/' }
+                    ],
+                    tips: [
+                        'الحفاظ على جرد شامل للموردين',
+                        'تصنيف الموردين حسب مستوى المخاطر',
+                        'تضمين متطلبات أمنية في العقود',
+                        'إجراء تقييمات أمنية منتظمة للموردين'
+                    ]
+                },
+                {
+                    id: 16,
+                    title: 'أمن برامج التطبيقات',
+                    subtitle: 'التطوير الآمن',
+                    description: 'إدارة دورة حياة الأمن للبرامج المطورة داخلياً أو المستضافة أو المكتسبة لمنع واكتشاف ومعالجة نقاط الضعف الأمنية.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '16.1', title: 'إنشاء وصيانة عملية تطوير تطبيقات آمنة' },
+                        { id: '16.2', title: 'إنشاء وصيانة عملية لقبول ومعالجة ثغرات البرامج' },
+                        { id: '16.3', title: 'إجراء تحليل السبب الجذري للثغرات الأمنية' },
+                        { id: '16.4', title: 'إنشاء وإدارة جرد لمكونات البرامج من طرف ثالث' },
+                        { id: '16.5', title: 'استخدام مكونات برامج طرف ثالث محدثة وموثوقة' }
+                    ],
+                    tools: [
+                        { name: 'SonarQube', type: 'مفتوح المصدر', description: 'تحليل جودة وأمن الكود', url: 'https://www.sonarqube.org/' },
+                        { name: 'OWASP ZAP', type: 'مفتوح المصدر', description: 'ماسح أمن تطبيقات الويب', url: 'https://www.zaproxy.org/' },
+                        { name: 'Dependency-Check', type: 'مفتوح المصدر', description: 'تحليل تكوين البرامج', url: 'https://owasp.org/www-project-dependency-check/' },
+                        { name: 'Bandit', type: 'مفتوح المصدر', description: 'أداة فحص أمن Python', url: 'https://github.com/PyCQA/bandit' }
+                    ],
+                    tips: [
+                        'دمج اختبار الأمان في خط أنابيب CI/CD',
+                        'إجراء تحليل الكود الثابت والديناميكي',
+                        'تتبع ثغرات مكونات الطرف الثالث',
+                        'تنفيذ معايير البرمجة الآمنة'
+                    ]
+                },
+                {
+                    id: 17,
+                    title: 'إدارة الاستجابة للحوادث',
+                    subtitle: 'الاستجابة للحوادث الأمنية',
+                    description: 'إنشاء برنامج لتطوير وصيانة قدرة الاستجابة للحوادث للاستعداد والكشف والاستجابة السريعة للهجوم.',
+                    ig: ['IG1', 'IG2', 'IG3'],
+                    safeguards: [
+                        { id: '17.1', title: 'تعيين موظفين لإدارة معالجة الحوادث' },
+                        { id: '17.2', title: 'إنشاء وصيانة معلومات الاتصال للإبلاغ عن الحوادث الأمنية' },
+                        { id: '17.3', title: 'إنشاء وصيانة عملية المؤسسة للإبلاغ عن الحوادث' },
+                        { id: '17.4', title: 'إنشاء وصيانة عملية الاستجابة للحوادث' },
+                        { id: '17.5', title: 'تعيين الأدوار والمسؤوليات الرئيسية' }
+                    ],
+                    tools: [
+                        { name: 'TheHive', type: 'مفتوح المصدر', description: 'منصة الاستجابة للحوادث الأمنية', url: 'https://thehive-project.org/' },
+                        { name: 'MISP', type: 'مفتوح المصدر', description: 'منصة مشاركة معلومات التهديدات', url: 'https://www.misp-project.org/' },
+                        { name: 'Cortex', type: 'مفتوح المصدر', description: 'محرك تحليل القابل للملاحظة', url: 'https://github.com/TheHive-Project/Cortex' },
+                        { name: 'FIR', type: 'مفتوح المصدر', description: 'الاستجابة السريعة للحوادث', url: 'https://github.com/certsocietegenerale/FIR' }
+                    ],
+                    tips: [
+                        'تطوير وتوثيق خطة الاستجابة للحوادث',
+                        'إنشاء أدوار فريق الاستجابة للحوادث',
+                        'إجراء تمارين نظرية بانتظام',
+                        'دمج معلومات التهديدات في عملية الاستجابة للحوادث'
+                    ]
+                },
+                {
+                    id: 18,
+                    title: 'اختبار الاختراق',
+                    subtitle: 'الاختبار الأمني',
+                    description: 'اختبار فعالية ومرونة أصول المؤسسة من خلال تحديد واستغلال نقاط الضعف في الضوابط واكتشافها من خلال مراقبة الشبكة والأمن.',
+                    ig: ['IG2', 'IG3'],
+                    safeguards: [
+                        { id: '18.1', title: 'إنشاء وصيانة برنامج اختبار الاختراق' },
+                        { id: '18.2', title: 'إجراء اختبارات اختراق خارجية دورية' },
+                        { id: '18.3', title: 'معالجة نتائج اختبار الاختراق' },
+                        { id: '18.4', title: 'التحقق من صحة التدابير الأمنية' },
+                        { id: '18.5', title: 'إجراء اختبارات اختراق داخلية دورية' }
+                    ],
+                    tools: [
+                        { name: 'Metasploit', type: 'مفتوح المصدر', description: 'إطار اختبار الاختراق', url: 'https://www.metasploit.com/' },
+                        { name: 'Kali Linux', type: 'مفتوح المصدر', description: 'توزيعة اختبار الاختراق', url: 'https://www.kali.org/' },
+                        { name: 'Burp Suite Community', type: 'مفتوح المصدر', description: 'اختبار أمن الويب', url: 'https://portswigger.net/burp/communitydownload' },
+                        { name: 'OpenVAS', type: 'مفتوح المصدر', description: 'تقييم الثغرات', url: 'https://www.openvas.org/' }
+                    ],
+                    tips: [
+                        'جدولة اختبارات الاختراق المنتظمة',
+                        'اختبار سطح الهجوم الخارجي والداخلي',
+                        'معالجة النتائج بناءً على أولوية المخاطر',
+                        'التحقق من فعالية الضوابط الأمنية'
+                    ]
+                }
+            ]
+        };
+
+        // Language switching
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentLang = btn.dataset.lang;
+                updateLanguage();
+                renderControls();
+            });
+        });
+
+        function updateLanguage() {
+            const t = translations[currentLang];
+            document.querySelector('.site-title').textContent = t.siteTitle;
+            document.querySelector('.site-subtitle').textContent = t.siteSubtitle;
+            document.querySelector('.hero-title').textContent = t.heroTitle;
+            document.querySelector('.hero-description').textContent = t.heroDescription;
+            document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+            document.querySelector('.filter-label').textContent = t.filterLabel;
+
+            // Update stats labels
+            const stats = document.querySelectorAll('.stat-label');
+            stats[0].textContent = t.statsLabels.controls;
+            stats[1].textContent = t.statsLabels.safeguards;
+            stats[2].textContent = t.statsLabels.tools;
+
+            // Update filter buttons
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns[0].textContent = t.allFilter;
+            
+            // Update footer
+            document.querySelectorAll('.footer-heading')[0].textContent = t.footerHeadings.about;
+            document.querySelectorAll('.footer-heading')[1].textContent = t.footerHeadings.resources;
+            document.querySelectorAll('.footer-heading')[2].textContent = t.footerHeadings.developer;
+            document.querySelectorAll('.footer-text')[0].textContent = t.footerText.about;
+            document.querySelectorAll('.footer-text')[1].textContent = t.footerText.developer;
+
+            // Update section titles in modal if open
+            if (document.getElementById('controlModal').classList.contains('active')) {
+                updateModalLanguage();
+            }
+
+            // Apply RTL for Arabic
+            if (currentLang === 'ar') {
+                document.body.style.direction = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.style.direction = 'ltr';
+                document.body.style.textAlign = 'left';
+            }
+        }
+
+        function updateModalLanguage() {
+            const t = translations[currentLang];
+            const sectionTitles = document.querySelectorAll('.section-title-text');
+            if (sectionTitles.length >= 4) {
+                sectionTitles[0].textContent = t.sectionTitles.description;
+                sectionTitles[1].textContent = t.sectionTitles.safeguards;
+                sectionTitles[2].textContent = t.sectionTitles.tools;
+                sectionTitles[3].textContent = t.sectionTitles.tips;
+            }
+        }
+
+        // Render controls
+        let currentFilter = 'all';
+
+        function renderControls() {
+            const grid = document.getElementById('controlsGrid');
+            const controls = cisControls[currentLang];
+            const t = translations[currentLang];
+
+            const filtered = currentFilter === 'all' 
+                ? controls 
+                : controls.filter(c => c.ig.some(ig => ig.toLowerCase() === currentFilter));
+
+            grid.innerHTML = filtered.map(control => `
+                <div class="control-card" onclick="openModal(${control.id})">
+                    <div class="control-header">
+                        <div class="control-number">${control.id}</div>
+                        <div class="control-info">
+                            <h3 class="control-title">${control.title}</h3>
+                            <p class="control-subtitle">${control.subtitle}</p>
+                        </div>
+                    </div>
+                    <p class="control-description">${control.description.substring(0, 150)}...</p>
+                    <div class="control-tags">
+                        ${control.ig.map(ig => `<span class="tag tag-${ig.toLowerCase()}">${ig}</span>`).join('')}
+                    </div>
+                    <div class="control-footer">
+                        <span class="tools-count"><strong>${control.tools.length}</strong> ${t.toolsCount}</span>
+                        <button class="view-btn">${t.viewDetails}</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter controls
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderControls();
+            });
+        });
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.control-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+
+        // Modal
+        function openModal(controlId) {
+            const controls = cisControls[currentLang];
+            const control = controls.find(c => c.id === controlId);
+            const t = translations[currentLang];
+            
+            document.getElementById('modalControlNumber').textContent = `${currentLang === 'en' ? 'Control' : 'ضابط'} ${control.id}`;
+            document.getElementById('modalTitle').textContent = control.title;
+            document.getElementById('modalSubtitle').textContent = control.subtitle;
+            document.getElementById('modalDescription').textContent = control.description;
+
+            // Safeguards
+            document.getElementById('modalSafeguards').innerHTML = control.safeguards.map(s => `
+                <div class="safeguard-item">
+                    <div class="safeguard-header">
+                        <span class="safeguard-id">${s.id}</span>
+                        <span class="safeguard-title">${s.title}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Tools
+            document.getElementById('modalTools').innerHTML = control.tools.map(tool => `
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h4 class="tool-name">${tool.name}</h4>
+                        <span class="tool-type type-opensource">${tool.type}</span>
+                    </div>
+                    <p class="tool-description">${tool.description}</p>
+                    <a href="${tool.url}" target="_blank" class="tool-link">${currentLang === 'en' ? 'Visit Project' : 'زيارة المشروع'} →</a>
+                </div>
+            `).join('');
+
+            // Tips
+            document.getElementById('modalTips').innerHTML = control.tips.map((tip, i) => `
+                <div class="tip-item">
+                    <div class="tip-icon">${i + 1}</div>
+                    <p class="tip-text">${tip}</p>
+                </div>
+            `).join('');
+
+            updateModalLanguage();
+            document.getElementById('controlModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('controlModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on background click
+        document.getElementById('controlModal').addEventListener('click', (e) => {
+            if (e.target.id === 'controlModal') {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        renderControls();
+    </script>
+</body>
+</html>
+
