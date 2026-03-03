@@ -15,7 +15,7 @@ If you discover a security vulnerability in this educational platform, please fo
 ### For Critical Security Issues
 
 1. **DO NOT** open a public issue
-2. Email security details to: [Your contact email]
+2. Email security details to: [Site@hotmail.com]
 3. Include:
    - Description of the vulnerability
    - Steps to reproduce
