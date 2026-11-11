@@ -4,18 +4,18 @@
 
 A comprehensive, interactive educational platform for learning and implementing the 18 CIS Critical Security Controls with open-source tools and practical guidance.
 
-## 🌟 Features
+## Features
 
-- **📚 Complete CIS Controls Coverage**: All 18 controls with 153 safeguards
-- **🌍 Bilingual Support**: Full English and Arabic interfaces
-- **🛠️ Open Source Tools**: 50+ curated open-source security tools mapped to each control
-- **💡 Implementation Tips**: Practical guidance for real-world implementation
-- **🎯 Implementation Groups**: Filter by IG1, IG2, and IG3
-- **🔍 Smart Search**: Quick search across all controls
-- **📱 Responsive Design**: Works seamlessly on desktop, tablet, and mobile
-- **🎨 Modern UI**: Clean, professional interface with dark theme
+- **Complete CIS Controls Coverage**: All 18 controls with 153 safeguards
+- **Bilingual Support**: Full English and Arabic interfaces
+- **Open Source Tools**: 50+ curated open-source security tools mapped to each control
+- **Implementation Tips**: Practical guidance for real-world implementation
+- **Implementation Groups**: Filter by IG1, IG2, and IG3
+- **Smart Search**: Quick search across all controls
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Modern UI**: Clean, professional interface with dark theme
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Option 1: GitHub Pages (Recommended)
 
@@ -51,7 +51,7 @@ npx http-server
 # Then visit: http://localhost:8000
 ```
 
-## 📋 CIS Controls Covered
+## CIS Controls Covered
 
 The platform covers all 18 CIS Critical Security Controls:
 
@@ -74,7 +74,7 @@ The platform covers all 18 CIS Critical Security Controls:
 17. **Incident Response Management**
 18. **Penetration Testing**
 
-## 🛠️ Open Source Tools Featured
+## Open Source Tools Featured
 
 The platform includes carefully selected open-source tools for each control:
 
@@ -86,7 +86,7 @@ The platform includes carefully selected open-source tools for each control:
 - **Backup**: Bacula, Restic, BorgBackup
 - **And 30+ more tools...**
 
-## 🌐 Language Support
+## Language Support
 
 The platform supports two languages with complete translations:
 
@@ -95,7 +95,7 @@ The platform supports two languages with complete translations:
 
 Switch languages using the toggle in the header.
 
-## 📖 Usage Guide
+## Usage Guide
 
 ### Browsing Controls
 
@@ -113,7 +113,7 @@ Each control provides:
 - **Open Source Tools**: Recommended tools with links
 - **Implementation Tips**: Practical guidance for implementation
 
-## 🎨 Customization
+## Customization
 
 ### Changing Colors
 
@@ -131,7 +131,7 @@ Edit the CSS variables in `index.html`:
 
 Edit the `cisControls` object in the JavaScript section to add or modify controls and tools.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Here's how you can help:
 
@@ -148,23 +148,23 @@ Contributions are welcome! Here's how you can help:
 4. Push to branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **CIS (Center for Internet Security)** for developing the CIS Controls framework
 - **Open Source Community** for the amazing security tools featured
 - All contributors who help improve this platform
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This platform is for educational purposes. CIS Controls® is a registered trademark of the Center for Internet Security, Inc. This project is not officially affiliated with or endorsed by CIS.
 
 Always verify tool compatibility and security before deployment in production environments.
 
-## 📞 Contact
+## Contact
 
 **Developed by**: Ali AlEnezi
 
@@ -172,11 +172,7 @@ Always verify tool compatibility and security before deployment in production en
 
 **Project Link**: [https://github.com/SiteQ8/cis-controls-platform](https://github.com/SiteQ8/cis-controls-platform)
 
-## 🌟 Star History
-
-If you find this project helpful, please consider giving it a star ⭐
-
-## 📈 Version History
+## Version History
 
 - **v1.0.0** (2026-03-03)
   - Initial release
@@ -188,4 +184,3 @@ If you find this project helpful, please consider giving it a star ⭐
 ---
 
 **Made in 🇰🇼 for the cybersecurity community**
-
